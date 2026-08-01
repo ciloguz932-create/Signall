@@ -20,11 +20,17 @@ export const dictionary = {
       ctaPrimary: "Paylaşımlarımı Gör",
       ctaSecondary: "Hakkımda",
     },
+    marquee: ["Tarih", "Bilim", "Felsefe", "Keşif", "Merak", "Gelecek"],
     about: {
       title: "Ben Kimim?",
       body: [
         "Ben Menar. Dünyayı anlamaya ve geleceği tasarlamaya adanmış bir meraklıyım.",
         "Tarihin sessiz izlerini, bilimin sınırlarını ve fikirlerin gücünü araştırıyorum. Bu sayfa, keşiflerimi ve düşüncelerimi paylaştığım yerdir.",
+      ],
+      stats: [
+        { value: 2, suffix: "+", label: "Yıl Araştırma" },
+        { value: 10, suffix: "+", label: "Paylaşım" },
+        { value: 4, suffix: "", label: "Konu Başlığı" },
       ],
     },
     posts: {
@@ -58,11 +64,17 @@ export const dictionary = {
       ctaPrimary: "See My Posts",
       ctaSecondary: "About Me",
     },
+    marquee: ["History", "Science", "Philosophy", "Discovery", "Curiosity", "Future"],
     about: {
       title: "Who Am I?",
       body: [
         "I am Menar. A curious mind devoted to understanding the world and designing the future.",
         "I explore the silent traces of history, the frontiers of science and the power of ideas. This page is where I share my discoveries and thoughts.",
+      ],
+      stats: [
+        { value: 2, suffix: "+", label: "Years of Research" },
+        { value: 10, suffix: "+", label: "Shares" },
+        { value: 4, suffix: "", label: "Topic Areas" },
       ],
     },
     posts: {

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #faf9f6;
   --foreground: #0a2b20;
 }
 
@@ -14,8 +14,12 @@
   --color-brand-light: #2e8b5f;
   --color-mist: #eef4f0;
   --color-sage: #a8c7b5;
+  --color-gold: #2e8b5f;
+  --color-gold-light: #7fb89a;
+  --color-gold-dark: #145c42;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-playfair);
 }
 
 body {
@@ -59,4 +63,337 @@ html {
 
 .animate-fade-up {
   animation: fade-up 0.8s ease-out both;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 5s ease-in-out infinite;
+}
+
+@keyframes drift-a {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  33% {
+    transform: translate(40px, -30px);
+  }
+  66% {
+    transform: translate(-25px, 20px);
+  }
+}
+
+@keyframes drift-b {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  33% {
+    transform: translate(-35px, 25px);
+  }
+  66% {
+    transform: translate(30px, -20px);
+  }
+}
+
+.animate-drift-a {
+  animation: drift-a 14s ease-in-out infinite;
+}
+
+.animate-drift-b {
+  animation: drift-b 17s ease-in-out infinite;
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    #7fb89a 0%,
+    #ffffff 25%,
+    #2e8b5f 50%,
+    #ffffff 75%,
+    #7fb89a 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+/* Logo animations */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 10s linear infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+@keyframes bird-glide {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2.5px);
+  }
+}
+
+.animate-bird-glide {
+  animation: bird-glide 3.5s ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+@keyframes wing-flap {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-9deg);
+  }
+}
+
+.animate-wing {
+  animation: wing-flap 2.8s ease-in-out infinite;
+  transform-origin: 78% 55%;
+  transform-box: fill-box;
+}
+
+@keyframes halo-pulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.12);
+  }
+}
+
+.animate-halo {
+  animation: halo-pulse 4s ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+/* ===== Reveal (ScrollFloat / ScrollReveal) =====
+   No-JS güvenli: varsayılan görünür; html.js altında gizlenip
+   IntersectionObserver "in-view" ekleyince belirir. */
+.reveal {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+html.js .reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== SpotlightCard ===== */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    240px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(46, 139, 95, 0.16),
+    transparent 70%
+  );
+  z-index: 1;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+/* ===== Magnet ===== */
+.magnet {
+  display: inline-block;
+  transform: translate(var(--mag-x, 0px), var(--mag-y, 0px));
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+/* ===== Marquee ===== */
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+}
+
+.marquee-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 3rem;
+  padding-right: 3rem;
+  white-space: nowrap;
+  animation: marquee-scroll 26s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* ===== Aurora ===== */
+.aurora {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.aurora::before,
+.aurora::after {
+  content: "";
+  position: absolute;
+  width: 48rem;
+  height: 48rem;
+  border-radius: 9999px;
+  filter: blur(60px);
+  will-change: transform, opacity;
+}
+
+.aurora-dark::before {
+  background: rgba(127, 184, 154, 0.5);
+  top: -12rem;
+  left: -10rem;
+  animation: aurora-drift-a 9s ease-in-out infinite;
+}
+
+.aurora-dark::after {
+  background: rgba(46, 139, 95, 0.55);
+  bottom: -14rem;
+  right: -8rem;
+  animation: aurora-drift-b 12s ease-in-out infinite;
+}
+
+.aurora-light::before {
+  background: rgba(46, 139, 95, 0.3);
+  top: -12rem;
+  right: -8rem;
+  animation: aurora-drift-b 11s ease-in-out infinite;
+}
+
+.aurora-light::after {
+  background: rgba(168, 199, 181, 0.45);
+  bottom: -10rem;
+  left: -6rem;
+  animation: aurora-drift-a 13s ease-in-out infinite;
+}
+
+@keyframes aurora-drift-a {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.9;
+  }
+  33% {
+    transform: translate(12rem, 7rem) scale(1.3);
+    opacity: 1;
+  }
+  66% {
+    transform: translate(-9rem, 4rem) scale(0.85);
+    opacity: 0.75;
+  }
+}
+
+@keyframes aurora-drift-b {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.75;
+  }
+  33% {
+    transform: translate(-12rem, -7rem) scale(1.25);
+    opacity: 1;
+  }
+  66% {
+    transform: translate(9rem, -4rem) scale(0.9);
+    opacity: 0.85;
+  }
+}
+
+/* ===== Reduced motion fallback ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal,
+  html.js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .aurora::before,
+  .aurora::after {
+    animation: none;
+  }
+
+  .magnet {
+    transform: none;
+  }
 }

@@ -1,0 +1,245 @@
+{
+  "posts": [
+    {
+      "id": "vmenar2026",
+      "title": {
+        "tr": "Vmenar2026",
+        "en": "menar2026"
+      },
+      "tag": {
+        "tr": "Genel",
+        "en": "General"
+      },
+      "excerpt": {
+        "tr": "",
+        "en": ""
+      },
+      "link": "https://www.instagram.com/menar.official/",
+      "date": "2026-08-02",
+      "published": true
+    },
+    {
+      "id": "dede-korkut",
+      "title": {
+        "tr": "Kayıp Nüsha: Dede Korkut'un Üçüncü Elyazması",
+        "en": "The Lost Copy: A Third Manuscript of Dede Korkut"
+      },
+      "tag": {
+        "tr": "Tarih",
+        "en": "History"
+      },
+      "excerpt": {
+        "tr": "Bir kütüphanenin tozlu raflarında bulunan elyazması, Türk destan geleneğinin bilinen en eski metnini nasıl yeniden yazabilir?",
+        "en": "A manuscript found on dusty library shelves could rewrite the oldest known text of the Turkic epic tradition."
+      },
+      "link": "https://www.instagram.com/menar.official/",
+      "date": "2026-04-18",
+      "published": true
+    },
+    {
+      "id": "antikythera",
+      "title": {
+        "tr": "2000 Yıllık Bir Bilgisayar Geleceği Nasıl Hesapladı?",
+        "en": "How Did a 2000-Year-Old Computer Calculate the Future?"
+      },
+      "tag": {
+        "tr": "Bilim",
+        "en": "Science"
+      },
+      "excerpt": {
+        "tr": "Antikythera düzeneği, güneş tutulmalarını yüzyıllar öncesinden hesaplayabilen mekanik bir deha.",
+        "en": "The Antikythera mechanism: mechanical genius that could predict solar eclipses centuries in advance."
+      },
+      "link": "https://www.instagram.com/menar.official/",
+      "date": "2026-03-02",
+      "published": true
+    },
+    {
+      "id": "manuscript",
+      "title": {
+        "tr": "1400 Yıllık Bir Elyazması Tarihi Değiştirebilir mi?",
+        "en": "Can a 1400-Year-Old Manuscript Change History?"
+      },
+      "tag": {
+        "tr": "Tarih",
+        "en": "History"
+      },
+      "excerpt": {
+        "tr": "Birkaç satırlık bir kenar notu, kabul edilmiş tarih anlatısını kökten sarsabilir.",
+        "en": "A few lines of marginalia could shake the accepted historical narrative to its core."
+      },
+      "link": "https://www.instagram.com/menar.official/",
+      "date": "2026-01-25",
+      "published": true
+    },
+    {
+      "id": "quantum",
+      "title": {
+        "tr": "Gerçeklik Sandığınızdan Çok Daha Tuhaf: Kuantum Dünyasının Gizli Kuralları",
+        "en": "Reality Is Stranger Than You Think: The Hidden Rules of the Quantum World"
+      },
+      "tag": {
+        "tr": "Bilim",
+        "en": "Science"
+      },
+      "excerpt": {
+        "tr": "Süperpozisyon, dolanıklık ve ölçüm sorunu: küçük ölçekte doğa, sezgilerimizle alay eder.",
+        "en": "Superposition, entanglement and the measurement problem: at small scales, nature mocks our intuition."
+      },
+      "link": "https://www.instagram.com/menar.official/",
+      "date": "2025-12-09",
+      "published": true
+    }
+  ],
+  "settings": {
+    "nav": {
+      "posts": {
+        "tr": "Paylaşımlar",
+        "en": "Posts"
+      },
+      "about": {
+        "tr": "Hakkımda",
+        "en": "About"
+      },
+      "contact": {
+        "tr": "İletişim",
+        "en": "Contact"
+      }
+    },
+    "hero": {
+      "badge": {
+        "tr": "Bilgi · İlim · Fikir",
+        "en": "Knowledge · Science · Ideas"
+      },
+      "title": {
+        "tr": "Dünyayı anlamak,",
+        "en": "Understand the world,"
+      },
+      "titleAccent": {
+        "tr": "geleceği tasarlamak.",
+        "en": "design the future."
+      },
+      "ghost": {
+        "tr": "Merak",
+        "en": "Curiosity"
+      },
+      "subtitle": {
+        "tr": "Tarih, bilim ve felsefe üzerine düşünceler. Merak ettiğim şeyleri araştırır, keşfettiklerimi paylaşırım.",
+        "en": "Thoughts on history, science and philosophy. I research what I'm curious about and share what I discover."
+      },
+      "ctaPrimary": {
+        "tr": "Paylaşımlarımı Gör",
+        "en": "See My Posts"
+      },
+      "ctaSecondary": {
+        "tr": "Hakkımda",
+        "en": "About Me"
+      }
+    },
+    "marquee": {
+      "tr": [
+        "Tarih",
+        "Bilim",
+        "Felsefe",
+        "Gelecek"
+      ],
+      "en": [
+        "History",
+        "Science",
+        "Philosophy",
+        "Discovery",
+        "Curiosity",
+        "Future"
+      ]
+    },
+    "about": {
+      "title": {
+        "tr": "Ben Kimim?",
+        "en": "Who Am I?"
+      },
+      "ghost": {
+        "tr": "Keşif",
+        "en": "Discovery"
+      },
+      "body": {
+        "tr": [
+          "Ben Menar. Dünyayı anlamaya ve geleceği tasarlamaya adanmış bir meraklıyım.",
+          "Tarihin sessiz izlerini, bilimin sınırlarını ve fikirlerin gücünü araştırıyorum. Bu sayfa, keşiflerimi ve düşüncelerimi paylaştığım yerdir."
+        ],
+        "en": [
+          "I am Menar. A curious mind devoted to understanding the world and designing the future.",
+          "I explore the silent traces of history, the frontiers of science and the power of ideas. This page is where I share my discoveries and thoughts."
+        ]
+      },
+      "stats": [
+        {
+          "label": {
+            "tr": "Yıl Araştırma",
+            "en": "Years of Research"
+          },
+          "value": 2,
+          "suffix": "+"
+        },
+        {
+          "label": {
+            "tr": "Paylaşım",
+            "en": "Shares"
+          },
+          "value": 10,
+          "suffix": "+"
+        },
+        {
+          "label": {
+            "tr": "Konu Başlığı",
+            "en": "Topic Areas"
+          },
+          "value": 4,
+          "suffix": ""
+        }
+      ]
+    },
+    "postsSection": {
+      "title": {
+        "tr": "Son Paylaşımlar",
+        "en": "Latest Posts"
+      },
+      "subtitle": {
+        "tr": "Instagram'da paylaştığım konulardan bir seçki.",
+        "en": "A selection of topics I share on Instagram."
+      },
+      "readMore": {
+        "tr": "Instagram'da Oku",
+        "en": "Read on Instagram"
+      }
+    },
+    "contact": {
+      "title": {
+        "tr": "Benimle İletişim",
+        "en": "Get In Touch"
+      },
+      "ghost": {
+        "tr": "Bağlantı",
+        "en": "Connect"
+      },
+      "subtitle": {
+        "tr": "Beni sosyal medyada takip edebilirsin.",
+        "en": "You can follow me on social media."
+      },
+      "instagram": {
+        "tr": "Instagram",
+        "en": "Instagram"
+      },
+      "instagramUrl": "https://www.instagram.com/menar.official/"
+    },
+    "footer": {
+      "rights": {
+        "tr": "Tüm hakları saklıdır.",
+        "en": "All rights reserved."
+      },
+      "tagline": {
+        "tr": "Dünyayı anla, geleceği keşfet.",
+        "en": "Understand the world, discover the future."
+      }
+    }
+  }
+}

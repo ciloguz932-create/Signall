@@ -14,9 +14,9 @@
   --color-brand-light: #2e8b5f;
   --color-mist: #eef4f0;
   --color-sage: #a8c7b5;
-  --color-gold: #2e8b5f;
-  --color-gold-light: #7fb89a;
-  --color-gold-dark: #145c42;
+  --color-gold: #c9a86a;
+  --color-gold-light: #e6d3a3;
+  --color-gold-dark: #8a6d3b;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-serif: var(--font-playfair);
@@ -26,15 +26,73 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-feature-settings: "kern", "liga";
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
 }
 
 ::selection {
-  background: #2e8b5f;
-  color: #ffffff;
+  background: #c9a86a;
+  color: #0a2b20;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+/* ===== Skip link ===== */
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 16px;
+  z-index: 100;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: var(--color-gold);
+  color: var(--color-brand-deep);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+/* ===== Film grain ===== */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+/* ===== Scroll progress ===== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 60;
+  transform-origin: left;
+  background: linear-gradient(
+    to right,
+    var(--color-gold-dark),
+    var(--color-gold),
+    var(--color-gold-light)
+  );
 }
 
 @keyframes float {
@@ -122,11 +180,11 @@ html {
 .text-shimmer {
   background: linear-gradient(
     90deg,
-    #7fb89a 0%,
+    #e6d3a3 0%,
     #ffffff 25%,
-    #2e8b5f 50%,
+    #c9a86a 50%,
     #ffffff 75%,
-    #7fb89a 100%
+    #e6d3a3 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -135,7 +193,238 @@ html {
   animation: shimmer 6s linear infinite;
 }
 
-/* Logo animations */
+/* ===== Button sheen sweep ===== */
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-sheen::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  height: 100%;
+  width: 55%;
+  transform: skewX(-20deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.45),
+    transparent
+  );
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.btn-sheen:hover::after {
+  left: 150%;
+}
+
+/* ===== Ghost word ===== */
+.ghost-word {
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--font-playfair), serif;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(201, 168, 106, 0.18);
+}
+
+/* ===== Ghost section number ===== */
+.ghost-num {
+  pointer-events: none;
+  user-select: none;
+  position: absolute;
+  font-family: var(--font-playfair), serif;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(201, 168, 106, 0.16);
+}
+
+/* ===== Stagger word reveal ===== */
+.stagger-word {
+  display: inline-block;
+  margin-right: 0.24em;
+  will-change: transform, opacity, filter;
+}
+
+@media (scripting: enabled) {
+  .stagger-word {
+    opacity: 0;
+    transform: translateY(1.1em);
+    filter: blur(10px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--sd, 0ms);
+  }
+
+  .stagger.in-view .stagger-word {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+/* ===== Cursor glow (global ambient light) ===== */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 640px;
+  height: 640px;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 40;
+  background: radial-gradient(
+    circle,
+    rgba(201, 168, 106, 0.06),
+    rgba(46, 139, 95, 0.05) 40%,
+    transparent 62%
+  );
+  transform: translate(-2000px, -2000px);
+  will-change: transform;
+}
+
+@media (hover: none) {
+  .cursor-glow {
+    display: none;
+  }
+}
+
+/* ===== Conic halo ring ===== */
+.conic-ring {
+  position: absolute;
+  border-radius: 9999px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(201, 168, 106, 0.55) 55deg,
+    transparent 110deg,
+    transparent 180deg,
+    rgba(46, 139, 95, 0.45) 235deg,
+    transparent 290deg
+  );
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 3px),
+    #000 calc(100% - 2px)
+  );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 3px),
+    #000 calc(100% - 2px)
+  );
+  animation: spin-slow 22s linear infinite;
+}
+
+/* ===== Folio vertical text ===== */
+.folio {
+  writing-mode: vertical-rl;
+  letter-spacing: 0.4em;
+}
+
+/* ===== Admin form primitives ===== */
+.inp {
+  width: 100%;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(10, 43, 32, 0.15);
+  background: #ffffff;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.875rem;
+  color: var(--color-brand-deep);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.inp::placeholder {
+  color: rgba(10, 43, 32, 0.35);
+}
+
+.inp:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(201, 168, 106, 0.25);
+}
+
+.lbl {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(10, 43, 32, 0.5);
+}
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(
+    90deg,
+    var(--color-gold-dark),
+    var(--color-gold),
+    var(--color-gold-dark)
+  );
+  background-size: 200% auto;
+  padding: 0.65rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-brand-deep);
+  transition:
+    background-position 0.4s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
+}
+
+.btn-gold:hover {
+  background-position: right center;
+  box-shadow: 0 10px 24px -8px rgba(201, 168, 106, 0.5);
+}
+
+.btn-gold:active {
+  transform: scale(0.98);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(10, 43, 32, 0.2);
+  padding: 0.65rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-brand-deep);
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.btn-ghost:hover {
+  border-color: var(--color-gold);
+  background: rgba(201, 168, 106, 0.1);
+}
+
+.card-panel {
+  border-radius: 1rem;
+  background: #ffffff;
+  box-shadow: 0 1px 0 rgba(10, 43, 32, 0.06);
+  border: 1px solid rgba(10, 43, 32, 0.08);
+}
+
+/* ===== Logo animations ===== */
 @keyframes spin-slow {
   from {
     transform: rotate(0deg);
@@ -199,8 +488,9 @@ html {
 }
 
 /* ===== Reveal (ScrollFloat / ScrollReveal) =====
-   No-JS güvenli: varsayılan görünür; html.js altında gizlenip
-   IntersectionObserver "in-view" ekleyince belirir. */
+   No-JS güvenli: `scripting: disabled` ortamında her zaman görünür;
+   scripting açıkken gizlenir ve IntersectionObserver "in-view"
+   ekleyince belirir. */
 .reveal {
   opacity: 1;
   transform: none;
@@ -210,14 +500,16 @@ html {
   will-change: opacity, transform;
 }
 
-html.js .reveal {
-  opacity: 0;
-  transform: translateY(28px);
-}
+@media (scripting: enabled) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+  }
 
-html.js .reveal.in-view {
-  opacity: 1;
-  transform: translateY(0);
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ===== SpotlightCard ===== */
@@ -235,7 +527,7 @@ html.js .reveal.in-view {
   transition: opacity 0.4s ease;
   background: radial-gradient(
     240px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(46, 139, 95, 0.16),
+    rgba(201, 168, 106, 0.16),
     transparent 70%
   );
   z-index: 1;
@@ -314,21 +606,21 @@ html.js .reveal.in-view {
 }
 
 .aurora-dark::before {
-  background: rgba(127, 184, 154, 0.5);
+  background: rgba(230, 211, 163, 0.38);
   top: -12rem;
   left: -10rem;
   animation: aurora-drift-a 9s ease-in-out infinite;
 }
 
 .aurora-dark::after {
-  background: rgba(46, 139, 95, 0.55);
+  background: rgba(46, 139, 95, 0.5);
   bottom: -14rem;
   right: -8rem;
   animation: aurora-drift-b 12s ease-in-out infinite;
 }
 
 .aurora-light::before {
-  background: rgba(46, 139, 95, 0.3);
+  background: rgba(201, 168, 106, 0.28);
   top: -12rem;
   right: -8rem;
   animation: aurora-drift-b 11s ease-in-out infinite;
@@ -382,8 +674,7 @@ html.js .reveal.in-view {
     scroll-behavior: auto !important;
   }
 
-  .reveal,
-  html.js .reveal {
+  .reveal {
     opacity: 1;
     transform: none;
   }
@@ -395,5 +686,9 @@ html.js .reveal.in-view {
 
   .magnet {
     transform: none;
+  }
+
+  .btn-sheen::after {
+    display: none;
   }
 }

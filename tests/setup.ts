@@ -16,9 +16,9 @@ jest.mock('next/navigation', () => ({
 }));
 
 jest.mock('next/link', () => {
-  return ({ children, href }: { children: any; href: string }) => {
-    return <a href={href}>{children}</a>;
-  };
+  const { createElement } = jest.requireActual('react') as typeof import('react');
+  return ({ children, href }: { children: React.ReactNode; href: string }) =>
+    createElement('a', { href }, children);
 });
 
 // Mock canvas for HTMLCanvasElement

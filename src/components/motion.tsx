@@ -20,7 +20,7 @@ export function Reveal({
     const el = ref.current;
     if (!el) return;
     if (typeof IntersectionObserver === "undefined") {
-      setInView(true);
+      el.classList.add("in-view");
       return;
     }
     const obs = new IntersectionObserver(
@@ -166,15 +166,13 @@ export function CountUp({
 }) {
   const ref = useRef<HTMLSpanElement | null>(null);
   const [value, setValue] = useState(0);
-  const [started, setStarted] = useState(false);
+  const [started, setStarted] = useState(
+    () => typeof IntersectionObserver === "undefined"
+  );
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (typeof IntersectionObserver === "undefined") {
-      setStarted(true);
-      return;
-    }
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -206,6 +204,10 @@ export function CountUp({
     <span ref={ref} className={className}>
       {value}
       {suffix}
+      <noscript>
+        {to}
+        {suffix}
+      </noscript>
     </span>
   );
 }
@@ -238,5 +240,35 @@ export function Aurora({
 }) {
   return (
     <div className={`aurora aurora-${variant} ${className}`} style={style} />
+  );
+}
+
+export function GhostWord({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <span
+      aria-hidden="true"
+      className={`ghost-word text-[22vw] sm:text-[12rem] md:text-[15rem] ${className}`}
+    >
+      {children}
+    </span>
+  );
+}
+
+export function Sparkle({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M12 0c.9 6.3 3.6 9 12 12-8.4 3-11.1 5.7-12 12-.9-6.3-3.6-9-12-12 8.4-3 11.1-5.7 12-12Z" />
+    </svg>
   );
 }

@@ -3,6 +3,14 @@
 :root {
   --background: #faf9f6;
   --foreground: #0a2b20;
+
+  /* MENAR brand token aliases (spec §4, §31) — map to the existing
+     emerald + gold + cream system so both naming schemes stay in sync. */
+  --menar-green: #0f3d2e;
+  --menar-green-dark: #0a2b20;
+  --menar-cream: #faf9f6;
+  --menar-black: #0a0a0a;
+  --menar-gold: #c9a86a;
 }
 
 @theme inline {

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
+import { siteUrl } from "@/lib/site";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -19,14 +20,42 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Menar — Dünyayı Anla, Geleceği Keşfet",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "MENAR — Bilgi, Kültür ve Üretim Platformu",
+    template: "%s · MENAR",
+  },
   description:
-    "Menar: tarih, bilim ve felsefe üzerine düşünceler. Understand the world, design the future.",
+    "MENAR: medya, akademi, çocuk içerikleri, ürünler ve teknoloji için yeni nesil bir kültürel üretim merkezi. Tarih, bilim ve felsefe üzerine düşünceler.",
+  keywords: [
+    "MENAR",
+    "bilgi",
+    "kültür",
+    "akademi",
+    "bilim",
+    "tarih",
+    "felsefe",
+    "çocuk içerikleri",
+  ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Menar",
+    title: "MENAR — Bilgi, Kültür ve Üretim Platformu",
     description:
-      "Tarih, bilim ve felsefe üzerine düşünceler. Understand the world, design the future.",
+      "Medya, akademi, çocuk içerikleri, ürünler ve teknoloji için yeni nesil bir kültürel üretim merkezi.",
     type: "website",
+    siteName: "MENAR",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MENAR — Bilgi, Kültür ve Üretim Platformu",
+    description:
+      "Medya, akademi, çocuk içerikleri, ürünler ve teknoloji için yeni nesil bir kültürel üretim merkezi.",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

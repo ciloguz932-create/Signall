@@ -24,11 +24,35 @@ export type StatView = {
   suffix: string;
 };
 
+/** A MENAR domain card in the home "brand hub" scroll story. */
+export type BrandItem = {
+  key: string;
+  name: Bilingual<string>;
+  description: Bilingual<string>;
+  href: string;
+  soon: boolean;
+};
+
+export type BrandItemView = {
+  key: string;
+  name: string;
+  description: string;
+  href: string;
+  soon: boolean;
+};
+
 export type SiteSettings = {
   nav: {
+    explore: Bilingual<string>;
     posts: Bilingual<string>;
     about: Bilingual<string>;
     contact: Bilingual<string>;
+  };
+  brandGrid: {
+    kicker: Bilingual<string>;
+    title: Bilingual<string>;
+    subtitle: Bilingual<string>;
+    items: BrandItem[];
   };
   hero: {
     badge: Bilingual<string>;
@@ -70,7 +94,13 @@ export type SiteData = {
 };
 
 export type PageDict = {
-  nav: { posts: string; about: string; contact: string };
+  nav: { explore: string; posts: string; about: string; contact: string };
+  brandGrid: {
+    kicker: string;
+    title: string;
+    subtitle: string;
+    items: BrandItemView[];
+  };
   hero: {
     badge: string;
     title: string;
@@ -166,9 +196,73 @@ export const defaultPosts: PostData[] = [
 
 export const defaultSettings: SiteSettings = {
   nav: {
+    explore: { tr: "Keşfet", en: "Explore" },
     posts: { tr: "Paylaşımlar", en: "Posts" },
-    about: { tr: "Hakkımda", en: "About" },
+    about: { tr: "Hakkımızda", en: "About" },
     contact: { tr: "İletişim", en: "Contact" },
+  },
+  brandGrid: {
+    kicker: { tr: "MENAR Nedir", en: "What Is MENAR" },
+    title: {
+      tr: "Tek bir merkez, beş dünya.",
+      en: "One hub, five worlds.",
+    },
+    subtitle: {
+      tr: "Medya, akademi, çocuk içerikleri, ürünler ve teknoloji — hepsi tek bir kültürel üretim çatısı altında.",
+      en: "Media, academy, kids, products and technology — all under one cultural production roof.",
+    },
+    items: [
+      {
+        key: "studio",
+        name: { tr: "MENAR Studio", en: "MENAR Studio" },
+        description: {
+          tr: "Tarih, bilim ve kültür üzerine medya ve yaratıcı üretim.",
+          en: "Media and creative production on history, science and culture.",
+        },
+        href: "#posts",
+        soon: false,
+      },
+      {
+        key: "academy",
+        name: { tr: "MENAR Akademi", en: "MENAR Academy" },
+        description: {
+          tr: "Matematikten dile, bilimden İslami ilimlere öğrenme yolları.",
+          en: "Learning paths from math and language to science and Islamic studies.",
+        },
+        href: "",
+        soon: true,
+      },
+      {
+        key: "kids",
+        name: { tr: "MENAR Kids", en: "MENAR Kids" },
+        description: {
+          tr: "Çocuklar için hikâyeler, keşif ve eğitsel içerikler.",
+          en: "Stories, discovery and educational content for children.",
+        },
+        href: "",
+        soon: true,
+      },
+      {
+        key: "shop",
+        name: { tr: "MENAR Shop", en: "MENAR Shop" },
+        description: {
+          tr: "Dijital ve fiziksel ürünler; kitaplar ve koleksiyonlar.",
+          en: "Digital and physical products; books and collections.",
+        },
+        href: "",
+        soon: true,
+      },
+      {
+        key: "lab",
+        name: { tr: "MENAR Lab", en: "MENAR Lab" },
+        description: {
+          tr: "Yapay zekâ, algoritmalar ve deneysel web projeleri.",
+          en: "AI, algorithms and experimental web projects.",
+        },
+        href: "",
+        soon: true,
+      },
+    ],
   },
   hero: {
     badge: { tr: "Bilgi · Bilim · Fikir", en: "Knowledge · Science · Ideas" },
@@ -276,9 +370,22 @@ function pick<T>(b: Bilingual<T>, locale: Locale): T {
 export function toPageDict(settings: SiteSettings, locale: Locale): PageDict {
   return {
     nav: {
+      explore: pick(settings.nav.explore, locale),
       posts: pick(settings.nav.posts, locale),
       about: pick(settings.nav.about, locale),
       contact: pick(settings.nav.contact, locale),
+    },
+    brandGrid: {
+      kicker: pick(settings.brandGrid.kicker, locale),
+      title: pick(settings.brandGrid.title, locale),
+      subtitle: pick(settings.brandGrid.subtitle, locale),
+      items: settings.brandGrid.items.map((item) => ({
+        key: item.key,
+        name: pick(item.name, locale),
+        description: pick(item.description, locale),
+        href: item.href,
+        soon: item.soon,
+      })),
     },
     hero: {
       badge: pick(settings.hero.badge, locale),

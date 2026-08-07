@@ -20,6 +20,36 @@ type PageProps = {
   params: Promise<{ lang: string }>;
 };
 
+const BRAND_ICON_PATHS: Record<string, string> = {
+  // sparkle — creative / media studio
+  studio: "M12 3l1.8 4.6L18.5 9.4l-4.7 1.9L12 16l-1.8-4.7L5.5 9.4l4.7-1.8z",
+  // graduation cap — academy
+  academy: "M22 10L12 5 2 10l10 5 10-5zM6 12v5c0 1 2.7 3 6 3s6-2 6-3v-5",
+  // smile — kids
+  kids: "M12 21a9 9 0 100-18 9 9 0 000 18zM8.5 14s1.3 2 3.5 2 3.5-2 3.5-2M9 9.5h.01M15 9.5h.01",
+  // shopping bag — shop
+  shop: "M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0",
+  // beaker — lab
+  lab: "M9 3h6M10 3v6l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3M8 15h8",
+};
+
+function BrandIcon({ k, className }: { k: string; className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d={BRAND_ICON_PATHS[k] ?? BRAND_ICON_PATHS.studio} />
+    </svg>
+  );
+}
+
 function formatDate(iso: string, locale: Locale) {
   try {
     return new Intl.DateTimeFormat(locale === "tr" ? "tr-TR" : "en-US", {
@@ -207,6 +237,133 @@ export default async function Home({ params }: PageProps) {
         </div>
       </section>
 
+      {/* Brand hub — "MENAR nedir" scroll story */}
+      <section
+        id="brands"
+        className="relative scroll-mt-20 overflow-hidden bg-mist py-28 md:py-32"
+      >
+        <div className="pointer-events-none absolute -left-32 top-8 h-96 w-96 rounded-full bg-white blur-3xl" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
+        <div className="relative mx-auto max-w-5xl px-6">
+          <SectionHeader
+            index="01"
+            title={dict.brandGrid.title}
+            subtitle={dict.brandGrid.subtitle}
+          />
+          <div className="grid auto-rows-[minmax(190px,1fr)] gap-4 sm:grid-cols-2 lg:grid-cols-6">
+            {dict.brandGrid.items.map((item, i) => {
+              const feature = item.key === "studio";
+              const span = feature
+                ? "sm:col-span-2 lg:col-span-3 lg:row-span-2"
+                : "lg:col-span-3";
+              const soonLabel = lang === "tr" ? "Yakında" : "Soon";
+
+              const inner = (
+                <>
+                  <div className="flex items-center justify-between">
+                    <span
+                      className={`inline-flex items-center justify-center rounded-2xl ${
+                        feature
+                          ? "h-14 w-14 bg-gold/15 text-gold-light ring-1 ring-gold/30"
+                          : "h-12 w-12 bg-brand-deep/5 text-brand-mid ring-1 ring-brand-deep/10 transition-colors group-hover:bg-gold/15 group-hover:text-gold-dark"
+                      }`}
+                    >
+                      <BrandIcon k={item.key} className={feature ? "h-7 w-7" : "h-6 w-6"} />
+                    </span>
+                    {item.soon ? (
+                      <span
+                        className={`rounded-full px-2.5 py-1 font-mono text-[9px] tracking-[0.2em] uppercase ${
+                          feature
+                            ? "bg-white/10 text-gold-light/80"
+                            : "bg-brand-deep/5 text-brand-deep/40"
+                        }`}
+                      >
+                        {soonLabel}
+                      </span>
+                    ) : (
+                      <svg
+                        className={`h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 ${
+                          feature ? "text-gold-light" : "text-gold opacity-0 group-hover:opacity-100"
+                        }`}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        aria-hidden="true"
+                      >
+                        <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    )}
+                  </div>
+                  <div className="mt-auto">
+                    <h3
+                      className={`font-serif font-semibold ${
+                        feature
+                          ? "text-2xl text-white md:text-3xl"
+                          : "text-xl text-brand-deep"
+                      }`}
+                    >
+                      {item.name}
+                    </h3>
+                    <p
+                      className={`mt-2 leading-relaxed ${
+                        feature ? "max-w-md text-white/60" : "text-sm text-brand-deep/60"
+                      }`}
+                    >
+                      {item.description}
+                    </p>
+                    {!item.soon && (
+                      <span
+                        className={`mt-4 inline-flex items-center gap-1.5 text-sm font-medium ${
+                          feature ? "text-gold-light" : "text-gold-dark"
+                        }`}
+                      >
+                        {dict.nav.explore}
+                        <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                          <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </span>
+                    )}
+                  </div>
+                </>
+              );
+
+              const cardClass = `group relative flex h-full flex-col overflow-hidden rounded-2xl p-7 transition-all duration-300 ${
+                feature
+                  ? "bg-brand-deep ring-1 ring-brand-deep/20 shadow-[0_24px_60px_-30px_rgba(10,43,32,0.55)] hover:-translate-y-1.5"
+                  : "border border-brand-deep/10 bg-gradient-to-br from-mist to-white hover:-translate-y-1 hover:border-gold/40 hover:shadow-[0_18px_40px_-24px_rgba(10,43,32,0.4)]"
+              }`;
+
+              return (
+                <Reveal key={item.key} delay={i * 80} className={span}>
+                  {feature ? (
+                    <SpotlightCard className={cardClass}>
+                      <div className="pointer-events-none absolute inset-0 opacity-[0.05] [background-image:radial-gradient(circle_1px_#fff_1px,transparent_1px)] [background-size:22px_22px]" />
+                      <div className="pointer-events-none absolute -top-16 -right-16 h-52 w-52 rounded-full bg-gold/15 blur-3xl" />
+                      {item.href ? (
+                        <Link href={`/${lang}${item.href}`} className="relative flex h-full flex-col">
+                          {inner}
+                        </Link>
+                      ) : (
+                        <div className="relative flex h-full flex-col">{inner}</div>
+                      )}
+                    </SpotlightCard>
+                  ) : item.href ? (
+                    <Link href={`/${lang}${item.href}`} className={cardClass}>
+                      {inner}
+                    </Link>
+                  ) : (
+                    <div className={cardClass} aria-disabled="true">
+                      {inner}
+                    </div>
+                  )}
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* About */}
       <section
         id="about"
@@ -218,7 +375,7 @@ export default async function Home({ params }: PageProps) {
           {dict.about.ghost}
         </GhostWord>
         <div className="relative mx-auto max-w-5xl px-6">
-          <SectionHeader index="01" title={dict.about.title} />
+          <SectionHeader index="02" title={dict.about.title} />
           <div className="grid items-start gap-14 md:grid-cols-[auto_1fr]">
             <Reveal className="group relative mx-auto md:mx-0">
               <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-gold/25 via-transparent to-brand-light/25 blur-xl" />
@@ -275,7 +432,7 @@ export default async function Home({ params }: PageProps) {
         <div className="pointer-events-none absolute inset-0 opacity-[0.5] [background-image:radial-gradient(circle_1px_rgba(10,43,32,0.14)_1px,transparent_1px)] [background-size:26px_26px]" />
         <div className="relative mx-auto max-w-5xl px-6">
           <SectionHeader
-            index="02"
+            index="03"
             title={dict.postsSection.title}
             subtitle={dict.postsSection.subtitle}
           />
@@ -416,7 +573,7 @@ export default async function Home({ params }: PageProps) {
         </GhostWord>
         <div className="relative mx-auto max-w-5xl px-6 text-center">
           <SectionHeader
-            index="03"
+            index="04"
             title={dict.contact.title}
             subtitle={dict.contact.subtitle}
             align="center"

@@ -190,7 +190,7 @@ export default async function Home({ params }: PageProps) {
               delay={200}
               className="block"
             />
-            <span className="text-shimmer block italic">
+            <span className="block text-gold-light italic">
               {dict.hero.titleAccent}
             </span>
           </h1>

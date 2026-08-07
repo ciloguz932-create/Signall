@@ -69,9 +69,15 @@ export default function RootLayout({
       lang="tr"
       suppressHydrationWarning
       data-scroll-behavior="smooth"
+      data-theme="green"
       className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-white text-brand-deep">
+      <body className="flex min-h-full flex-col bg-background text-brand-deep">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('menar-theme');if(t==='green'||t==='mono'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})();`,
+          }}
+        />
         {children}
         <div className="grain" aria-hidden="true" />
       </body>

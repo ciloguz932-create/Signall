@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import type { Dictionary } from "@/lib/i18n";
 import BirdLogo from "@/components/BirdLogo";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const SECTION_IDS = ["brands", "posts", "about", "contact"] as const;
 
@@ -117,6 +118,9 @@ export default function Nav({
           </nav>
 
           <div className="flex items-center gap-2">
+            <div className="hidden sm:block">
+              <ThemeToggle />
+            </div>
             <LanguageSwitcher />
             <button
               type="button"
@@ -160,6 +164,12 @@ export default function Nav({
                 {link.label}
               </Link>
             ))}
+            <div className="mt-3 flex items-center justify-between border-t border-white/10 px-3 pt-4">
+              <span className="font-mono text-[10px] tracking-[0.2em] text-white/40 uppercase">
+                Tema
+              </span>
+              <ThemeToggle />
+            </div>
           </nav>
         </div>
       </header>

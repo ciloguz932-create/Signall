@@ -98,7 +98,7 @@ export default async function ShopProductPage({ params }: PageProps) {
             {/* Cover */}
             <Reveal>
               <div
-                className="relative flex aspect-[4/3] items-end overflow-hidden rounded-2xl shadow-2xl shadow-black/30 ring-1 ring-white/10"
+                className="cover-art relative flex aspect-[4/3] items-end overflow-hidden rounded-2xl shadow-2xl shadow-black/30 ring-1 ring-white/10"
                 style={{ backgroundImage: `linear-gradient(150deg, ${product.cover.from}, ${product.cover.to})` }}
               >
                 <div className="pointer-events-none absolute inset-0 opacity-[0.12] [background-image:radial-gradient(circle_1px_#fff_1px,transparent_1px)] [background-size:18px_18px]" />

@@ -19,7 +19,7 @@ export default function ShopProductCard({
       className="group flex h-full flex-col overflow-hidden rounded-2xl border border-brand-deep/10 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-gold/40 hover:shadow-[0_18px_40px_-24px_rgba(10,43,32,0.4)]"
     >
       <div
-        className="relative aspect-[4/3] overflow-hidden"
+        className="cover-art relative aspect-[4/3] overflow-hidden"
         style={{
           backgroundImage: `linear-gradient(150deg, ${product.cover.from}, ${product.cover.to})`,
         }}

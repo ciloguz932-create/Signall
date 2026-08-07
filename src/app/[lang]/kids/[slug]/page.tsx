@@ -113,7 +113,7 @@ export default async function KidsProductPage({ params }: PageProps) {
             {/* Cover */}
             <Reveal>
               <div
-                className="relative flex aspect-[3/4] items-end overflow-hidden rounded-2xl shadow-2xl shadow-black/30 ring-1 ring-white/10"
+                className="cover-art relative flex aspect-[3/4] items-end overflow-hidden rounded-2xl shadow-2xl shadow-black/30 ring-1 ring-white/10"
                 style={{
                   backgroundImage: `linear-gradient(150deg, ${product.cover.from}, ${product.cover.to})`,
                 }}

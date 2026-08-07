@@ -7,7 +7,7 @@ import type { Locale } from "@/lib/content";
 function CoverArt({ product }: { product: KidsProductView }) {
   return (
     <div
-      className="relative flex aspect-[3/4] items-end overflow-hidden rounded-xl"
+      className="cover-art relative flex aspect-[3/4] items-end overflow-hidden rounded-xl"
       style={{
         backgroundImage: `linear-gradient(150deg, ${product.cover.from}, ${product.cover.to})`,
       }}

@@ -52,14 +52,15 @@ export default async function LangLayout({ children, params }: LayoutProps) {
               {dict.brandGrid.kicker}
             </span>
             {[
-              { id: "brands", label: dict.nav.explore },
-              { id: "posts", label: dict.nav.posts },
-              { id: "about", label: dict.nav.about },
-              { id: "contact", label: dict.nav.contact },
+              { href: `/${lang}#brands`, label: dict.nav.explore },
+              { href: `/${lang}/kids`, label: "MENAR Kids" },
+              { href: `/${lang}#posts`, label: dict.nav.posts },
+              { href: `/${lang}#about`, label: dict.nav.about },
+              { href: `/${lang}#contact`, label: dict.nav.contact },
             ].map((link) => (
               <Link
-                key={link.id}
-                href={`/${lang}#${link.id}`}
+                key={link.href}
+                href={link.href}
                 className="w-fit text-white/60 transition-colors hover:text-gold-light"
               >
                 {link.label}

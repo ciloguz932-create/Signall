@@ -239,8 +239,8 @@ export const defaultSettings: SiteSettings = {
           tr: "Çocuklar için hikâyeler, keşif ve eğitsel içerikler.",
           en: "Stories, discovery and educational content for children.",
         },
-        href: "",
-        soon: true,
+        href: "/kids",
+        soon: false,
       },
       {
         key: "shop",

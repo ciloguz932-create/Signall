@@ -44,6 +44,9 @@ export type BrandItemView = {
 export type SiteSettings = {
   nav: {
     explore: Bilingual<string>;
+    academy: Bilingual<string>;
+    kids: Bilingual<string>;
+    shop: Bilingual<string>;
     posts: Bilingual<string>;
     about: Bilingual<string>;
     contact: Bilingual<string>;
@@ -94,7 +97,15 @@ export type SiteData = {
 };
 
 export type PageDict = {
-  nav: { explore: string; posts: string; about: string; contact: string };
+  nav: {
+    explore: string;
+    academy: string;
+    kids: string;
+    shop: string;
+    posts: string;
+    about: string;
+    contact: string;
+  };
   brandGrid: {
     kicker: string;
     title: string;
@@ -197,6 +208,9 @@ export const defaultPosts: PostData[] = [
 export const defaultSettings: SiteSettings = {
   nav: {
     explore: { tr: "Keşfet", en: "Explore" },
+    academy: { tr: "Akademi", en: "Academy" },
+    kids: { tr: "Kids", en: "Kids" },
+    shop: { tr: "Mağaza", en: "Shop" },
     posts: { tr: "Paylaşımlar", en: "Posts" },
     about: { tr: "Hakkımızda", en: "About" },
     contact: { tr: "İletişim", en: "Contact" },
@@ -229,8 +243,8 @@ export const defaultSettings: SiteSettings = {
           tr: "Matematikten dile, bilimden İslami ilimlere öğrenme yolları.",
           en: "Learning paths from math and language to science and Islamic studies.",
         },
-        href: "",
-        soon: true,
+        href: "/academy",
+        soon: false,
       },
       {
         key: "kids",
@@ -249,8 +263,8 @@ export const defaultSettings: SiteSettings = {
           tr: "Dijital ve fiziksel ürünler; kitaplar ve koleksiyonlar.",
           en: "Digital and physical products; books and collections.",
         },
-        href: "",
-        soon: true,
+        href: "/shop",
+        soon: false,
       },
       {
         key: "lab",
@@ -371,6 +385,9 @@ export function toPageDict(settings: SiteSettings, locale: Locale): PageDict {
   return {
     nav: {
       explore: pick(settings.nav.explore, locale),
+      academy: pick(settings.nav.academy, locale),
+      kids: pick(settings.nav.kids, locale),
+      shop: pick(settings.nav.shop, locale),
       posts: pick(settings.nav.posts, locale),
       about: pick(settings.nav.about, locale),
       contact: pick(settings.nav.contact, locale),

@@ -53,10 +53,10 @@ export default async function LangLayout({ children, params }: LayoutProps) {
             </span>
             {[
               { href: `/${lang}#brands`, label: dict.nav.explore },
-              { href: `/${lang}/kids`, label: "MENAR Kids" },
-              { href: `/${lang}#posts`, label: dict.nav.posts },
+              { href: `/${lang}/academy`, label: dict.nav.academy },
+              { href: `/${lang}/kids`, label: dict.nav.kids },
+              { href: `/${lang}/shop`, label: dict.nav.shop },
               { href: `/${lang}#about`, label: dict.nav.about },
-              { href: `/${lang}#contact`, label: dict.nav.contact },
             ].map((link) => (
               <Link
                 key={link.href}

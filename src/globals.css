@@ -185,20 +185,32 @@ html {
   animation: drift-b 17s ease-in-out infinite;
 }
 
+/* Visible gold fallback first — if a browser can't clip the gradient to the
+   text (some mobile Chromium/Samsung builds, esp. with filtered children),
+   the text still shows in gold instead of rendering as a blank/colored block. */
 .text-shimmer {
-  background: linear-gradient(
-    90deg,
-    #e6d3a3 0%,
-    #ffffff 25%,
-    #c9a86a 50%,
-    #ffffff 75%,
-    #e6d3a3 100%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: shimmer 6s linear infinite;
+  color: var(--color-gold-light);
+}
+
+@supports (
+  (-webkit-background-clip: text) or (background-clip: text)
+) {
+  .text-shimmer {
+    background: linear-gradient(
+      90deg,
+      #e6d3a3 0%,
+      #ffffff 25%,
+      #c9a86a 50%,
+      #ffffff 75%,
+      #e6d3a3 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: shimmer 6s linear infinite;
+  }
 }
 
 /* ===== Button sheen sweep ===== */

@@ -190,12 +190,9 @@ export default async function Home({ params }: PageProps) {
               delay={200}
               className="block"
             />
-            <Stagger
-              as="span"
-              text={dict.hero.titleAccent}
-              delay={340}
-              className="block italic text-transparent [background:linear-gradient(90deg,#e6d3a3_0%,#ffffff_25%,#c9a86a_50%,#ffffff_75%,#e6d3a3_100%)] [-webkit-background-clip:text] [background-size:200%_auto] [animation:shimmer_6s_linear_infinite]"
-            />
+            <span className="text-shimmer block italic">
+              {dict.hero.titleAccent}
+            </span>
           </h1>
           <Reveal as="p" delay={400} className="mt-7 max-w-xl text-lg leading-relaxed text-white/65">
             {dict.hero.subtitle}
